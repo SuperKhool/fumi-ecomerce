@@ -1,0 +1,60 @@
+{%extends 'home/base.html'%}
+{%load static%}
+{%block body%}
+<!-- contact section -->
+<section class="contact_section  long_section " style="margin: auto;">
+<div class="container">
+    <div class="row">
+    <div class="col-md-6" style="margin: auto;">
+        <div class="form_container" style="margin: auto;">
+        <div class="heading_container" style="margin: auto;">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+            {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+            </li>
+        {% endfor %}
+        
+            <h1>
+            Register
+            </h1>
+        </div>
+        <form class="container" method="POST">
+            {% csrf_token %}
+            <div>
+                First NAME:
+            <input type="text" class="container"   name="first_name" required/>
+            </div>
+            <div>
+                Last NAME:
+            <input type="text" class="container"  name="last_name" required/>
+            </div>
+            <div>
+            User Name:
+            <input type="text" class="container" class="container"   name="username" required/>
+            </div>
+            <div>
+            EMAIL:
+            <input type="email" class="container"  name="email" required/>
+            </div>
+            Password:
+            <input type="password" class="container" class="password" name="password" required/><br>
+            Confirm Your Password:
+            <input type="password"  class="container" class="password" name="password2" required/>
+            <div class="btn_box">
+                <br>
+            <button >
+                SUBMIT
+            </button>       
+            </div>
+        </form><br>
+        <a class="container" href="{% url 'sing_in'%}"><button>Log In</button></a> 
+        
+        <br>
+
+    </div>
+    </div>
+</div>
+<br>
+</section>
+<!-- end contact section -->
+{%endblock%}
